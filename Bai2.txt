@@ -1,0 +1,25 @@
+Nhấp nháy một LED, cố định các LED còn lại
+
+#define F_CPU 16000000UL
+#include <avr/io.h>
+#include <util/delay.h>
+#define LED_PORT PORTA
+#define LED_DDR DDRA
+
+void LED_on()
+{
+	LED_PORT = 0x07;
+	_delay_ms(50);
+	LED_PORT = 0x05;
+	_delay_ms(50);
+}
+
+int main(void)
+{
+	LED_DDR = 0xFF;
+	LED_PORT = 0x07;
+    while(1)
+    {
+        LED_on();
+    }
+}

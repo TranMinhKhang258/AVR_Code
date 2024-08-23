@@ -1,0 +1,29 @@
+Tắt LED chạy
+
+#define F_CPU 16000000UL
+#include <avr/io.h>
+#include <util/delay.h>
+#define LED_PORT PORTA
+#define LED_DDR DDRA
+
+void LED_on()
+{
+	for(int x = 0; x < 3; x++)
+	{
+		LED_PORT = ~(1 << x);
+		_delay_ms(50);
+	}
+// 	LED_PORT = 0x07;
+// 	_delay_ms(50);
+// 	LED_PORT = 0x05;
+// 	_delay_ms(50);
+}
+
+int main(void)
+{
+	LED_DDR = 0xFF;
+    while(1)
+    {
+        LED_on();
+    }
+}

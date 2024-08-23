@@ -1,0 +1,42 @@
+Chay tu 0 den 9 voi led 7 doan
+
+#define F_CPU 16000000UL
+#include <avr/io.h>
+#include <util/delay.h>
+#define SEG7_PORT PORTA
+#define SEG7_DDR DDRA
+
+void Display(int n)
+{
+	switch(n)
+	{
+		case 0: SEG7_PORT = 0x3F; break;
+		case 1: SEG7_PORT = 0x06; break;
+		case 2: SEG7_PORT = 0x5B; break;
+		case 3: SEG7_PORT = 0x4F; break;
+		case 4: SEG7_PORT = 0x66; break;
+		case 5: SEG7_PORT = 0x6D; break;
+		case 6: SEG7_PORT = 0x7D; break;
+		case 7: SEG7_PORT = 0x07; break;
+		case 8: SEG7_PORT = 0x7F; break;
+		case 9: SEG7_PORT = 0x6F; break;
+	}
+	_delay_ms(50);
+}
+
+void SEG7_run()
+{
+	for(int x = 0; x < 10; x++)
+	{
+		Display(x);
+	}
+}
+
+int main(void)
+{
+	SEG7_DDR = 0xFF;
+    while(1)
+    {
+        SEG7_run();
+    }
+}
